@@ -1,10 +1,10 @@
 {
     "sitename":"Reverse - s blog",
     "allowlist": [
-        "c12th.cn/"
+        "c12th.cn"
     ],
     "backTo": {
-        "url": "https://blog.c12th.cn/",
+        "url": "https://blog.c12th.cn",
         "sitename": "Reverse - s blog"
     }
 }
