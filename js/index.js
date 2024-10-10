@@ -5,7 +5,7 @@ $(document).ready(()=>{
             try {
                 if(!data instanceof Object)data = JSON.parse(data);
                 if(window.location.hash===""){
-                    document.getElementsByClassName("loading-text")[0].innerHTML = "链接参数错误，将跳转至"+data.backTo.sitename+"<dot>...</dot>"
+                    document.getElementsByClassName("loading-text")[0].innerHTML = "链接参数错误，即将返回" + "<dot>...</dot>"
                     setTimeout(()=>{
                         window.location.href = data.backTo.url;
                     },3000)
