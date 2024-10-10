@@ -8,7 +8,7 @@ $(document).ready(()=>{
                     document.getElementsByClassName("loading-text")[0].innerHTML = "链接参数错误，即将返回" + "<dot>...</dot>"
                     setTimeout(()=>{
                         window.location.href = data.backTo.url;
-                    },3000)
+                    },2000)
                     return;
                 }
                 let reg = new RegExp(/#(.*)/g);
@@ -33,7 +33,7 @@ $(document).ready(()=>{
                     }
                     setTimeout(function(){
                         window.location.href = link
-                    },3000)
+                    },2000)
                 }
             } catch (error) {
                 console.log(error)
@@ -62,7 +62,7 @@ function popUpWarning(config,link){
             console.log('setTimeout')
             setTimeout(function(){
                 window.location.href = link
-            },3000)
+            },2000)
         }    
         else {
             window.opener=null;
@@ -74,9 +74,9 @@ function popUpWarning(config,link){
     })
 }
 function dump(){
-    document.getElementsByClassName("loading-text")[0].innerHTML = "解析错误！3秒后返回上一页……"
+    document.getElementsByClassName("loading-text")[0].innerHTML = "解析错误！返回上一页……"
     setTimeout(()=>{
         window.location.href = document.referrer
-    },3000)
+    },2000)
     return;
 }
