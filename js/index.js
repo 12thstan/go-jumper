@@ -76,23 +76,10 @@ $(document).ready(() => {
 // }
 
 function popUpWarning(config, link) {
-    console.log("popUp")
-    function (isConfirm) {
-        console.log(isConfirm)
-        if (isConfirm.value) {
-            console.log('setTimeout')
-            setTimeout(function () {
-                window.location.href = link
-            }, 2000)
-        }
-        else {
-            window.opener = null;
-            window.open('', '_self');
-            window.close();
-            /* 微信浏览器关闭 */
-            WeixinJSBridge.call('closeWindow');
-        }
-    }
+    console.log('setTimeout')
+    setTimeout(function () {
+        window.location.href = link
+    }, 2000)
 }
 
 function dump() {
