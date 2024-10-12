@@ -1,51 +1,52 @@
-$(document).ready(()=>{
+$(document).ready(() => {
     $.ajax({
         url: "/config.json",
-        success: (data)=>{
+        success: (data) => {
             try {
-                if(!data instanceof Object)data = JSON.parse(data);
-                if(window.location.hash===""){
+                if (!data instanceof Object) data = JSON.parse(data);
+                if (window.location.hash === "") {
                     document.getElementsByClassName("loading-text")[0].innerHTML = "链接参数错误，即将返回" + "<dot>...</dot>"
-                    setTimeout(()=>{
+                    setTimeout(() => {
                         window.location.href = data.backTo.url;
-                    },2000)
+                    }, 2000)
                     return;
                 }
                 let reg = new RegExp(/#(.*)/g);
                 let base64 = reg.exec(window.location.hash)[1]
                 let link = window.atob(base64)
                 let referrer = document.referrer.split('/')[2];
-                referrer = referrer===undefined?"":referrer;
-                console.log(link,referrer)
-                if(data.allowlist.length!=0){
+                referrer = referrer === undefined ? "" : referrer;
+                console.log(link, referrer)
+                if (data.allowlist.length != 0) {
                     let allowed = false
-                    for(i in data.allowlist){
-                        if(referrer.endsWith(data.allowlist[i])){
+                    for (i in data.allowlist) {
+                        if (referrer.endsWith(data.allowlist[i])) {
                             allowed = true;
                             break;
                         }
                     }
                     console.log("allowlist checked")
-                    if(!allowed){
+                    if (!allowed) {
                         console.log("Blocked")
-                        popUpWarning(data,link)
+                        popUpWarning(data, link)
                         return
                     }
-                    setTimeout(function(){
+                    setTimeout(function () {
                         window.location.href = link
-                    },2000)
+                    }, 2000)
                 }
             } catch (error) {
                 console.log(error)
                 dump()
             }
         },
-        error: ()=>{
+        error: () => {
             console.log("Config LOST")
             dump()
         }
     })
 })
+
 // function popUpWarning(config,link){
 //     console.log("popUp")
 //     swal.fire({
@@ -73,10 +74,31 @@ $(document).ready(()=>{
 //         }
 //     })
 // }
-function dump(){
+
+function popUpWarning(config, link) {
+    console.log("popUp")
+    function (isConfirm) {
+        console.log(isConfirm)
+        if (isConfirm.value) {
+            console.log('setTimeout')
+            setTimeout(function () {
+                window.location.href = link
+            }, 2000)
+        }
+        else {
+            window.opener = null;
+            window.open('', '_self');
+            window.close();
+            /* 微信浏览器关闭 */
+            WeixinJSBridge.call('closeWindow');
+        }
+    }
+}
+
+function dump() {
     document.getElementsByClassName("loading-text")[0].innerHTML = "解析错误！返回上一页……"
-    setTimeout(()=>{
+    setTimeout(() => {
         window.location.href = document.referrer
-    },2000)
+    }, 2000)
     return;
 }
