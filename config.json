@@ -1,7 +1,7 @@
 {
     "sitename":"Reverse - s blog",
     "allowlist": [
-        "https://c12th.cn"
+        "c12th.cn"
     ],
     "backTo": {
         "url": "https://blog.c12th.cn",
