@@ -46,33 +46,33 @@ $(document).ready(()=>{
         }
     })
 })
-function popUpWarning(config,link){
-    console.log("popUp")
-    swal.fire({
-        title: "确定访问？",
-        text: "该网址不属于"+config.sitename+"，\n你确定要打开"+link+"吗？",
-        type: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#DD6B55",
-        confirmButtonText: "确定",
-        cancelButtonText: "取消",
-      }).then(function(isConfirm){
-        console.log(isConfirm)
-        if (isConfirm.value) {
-            console.log('setTimeout')
-            setTimeout(function(){
-                window.location.href = link
-            },2000)
-        }    
-        else {
-            window.opener=null;
-            window.open('','_self');
-            window.close();
-            /* 微信浏览器关闭 */ 
-            WeixinJSBridge.call('closeWindow');
-        }
-    })
-}
+// function popUpWarning(config,link){
+//     console.log("popUp")
+//     swal.fire({
+//         title: "确定访问？",
+//         text: "该网址不属于"+config.sitename+"，\n你确定要打开"+link+"吗？",
+//         type: "warning",
+//         showCancelButton: true,
+//         confirmButtonColor: "#DD6B55",
+//         confirmButtonText: "确定",
+//         cancelButtonText: "取消",
+//       }).then(function(isConfirm){
+//         console.log(isConfirm)
+//         if (isConfirm.value) {
+//             console.log('setTimeout')
+//             setTimeout(function(){
+//                 window.location.href = link
+//             },2000)
+//         }    
+//         else {
+//             window.opener=null;
+//             window.open('','_self');
+//             window.close();
+//             /* 微信浏览器关闭 */ 
+//             WeixinJSBridge.call('closeWindow');
+//         }
+//     })
+// }
 function dump(){
     document.getElementsByClassName("loading-text")[0].innerHTML = "解析错误！返回上一页……"
     setTimeout(()=>{
